@@ -1,0 +1,4 @@
+analyser:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
