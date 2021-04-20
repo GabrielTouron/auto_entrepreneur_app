@@ -1,4 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:auto_entrepreneur_app/screens/clients_screen.dart';
+import 'package:auto_entrepreneur_app/screens/home_screen.dart';
+import 'package:auto_entrepreneur_app/screens/incomes_screen.dart';
+import 'package:auto_entrepreneur_app/screens/login_screen.dart';
+import 'package:auto_entrepreneur_app/screens/profile_screen.dart';
+import 'package:auto_entrepreneur_app/screens/register_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -14,39 +19,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Firebase'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => FirebaseFirestore.instance
-              .collection('testing')
-              .add({'timestamp': Timestamp.fromDate(DateTime.now())}),
-          child: Icon(Icons.add),
-        ),
-        body: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection('testing').snapshots(),
-          builder: (
-            BuildContext context,
-            AsyncSnapshot<QuerySnapshot> snapshot,
-          ) {
-            if (!snapshot.hasData) return const SizedBox.shrink();
-            return ListView.builder(
-              itemCount: snapshot.data.docs.length,
-              itemBuilder: (BuildContext context, int index) {
-                final docData = snapshot.data.docs[index].data();
-                final dateTime = (docData['timestamp'] as Timestamp).toDate();
-                return ListTile(
-                  title: Text(dateTime.toString()),
-                );
-              },
-            );
-          },
-        ),
-      ),
+      initialRoute: '/login',
+      debugShowCheckedModeBanner: false,
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/incomes': (context) => IncomesScreen(),
+        '/register': (context) => RegisterScreen(),
+        '/login': (context) => LoginScreen(),
+        '/clients': (context) => ClientsScreen(),
+        '/profile': (context) => ProfileScreen(),
+      },
     );
   }
 }
