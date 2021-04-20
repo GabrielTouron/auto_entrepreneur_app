@@ -5,7 +5,6 @@ import 'package:auto_entrepreneur_app/screens/login_screen.dart';
 import 'package:auto_entrepreneur_app/screens/profile_screen.dart';
 import 'package:auto_entrepreneur_app/screens/register_screen.dart';
 import 'package:auto_entrepreneur_app/controllers/auth_controller.dart';
-import 'package:auto_entrepreneur_app/screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
