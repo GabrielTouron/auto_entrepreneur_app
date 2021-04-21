@@ -1,16 +1,14 @@
 import 'package:auto_entrepreneur_app/general_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'custom_exception.dart';
 
 abstract class BaseAuthRepository {
   Stream<User?> get authStateChanges;
-  Future<void> signInWithEmailAndPassword(
-      {required String email, required String password});
-  Future<void> createUserWithEmailAndPassword(
-      {required String email, required String password});
   User? getCurrentUser();
+  Future<UserCredential> googleSignIn();
   Future<void> signOut();
 }
 
@@ -37,18 +35,6 @@ class AuthRepository implements BaseAuthRepository {
   }
 
   @override
-  Future<void> signInWithEmailAndPassword(
-      {required String email, required String password}) async {
-    try {
-      await _read(firebaseAuthProvider)
-          .signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      throw CustomException(message: e.message);
-    }
-  }
-
-  @override
   Future<void> signOut() async {
     try {
       await _read(firebaseAuthProvider).signOut();
@@ -59,11 +45,19 @@ class AuthRepository implements BaseAuthRepository {
   }
 
   @override
-  Future<void> createUserWithEmailAndPassword(
-      {required String email, required String password}) async {
+  Future<UserCredential> googleSignIn() async {
     try {
-      await _read(firebaseAuthProvider)
-          .createUserWithEmailAndPassword(email: email, password: password);
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
+
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      return await FirebaseAuth.instance.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
       print(e);
       throw CustomException(message: e.message);

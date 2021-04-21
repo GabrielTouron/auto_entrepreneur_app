@@ -27,21 +27,12 @@ class AuthController extends StateNotifier<User?> {
   }
 
   void appStarted() async {
-    final user = _read(authRepositoryProvider).getCurrentUser();
-    if (user == null) {
-      // await _read(authRepositoryProvider)
-    }
+    print('app is started');
   }
 
-  void signUp(String email, String password) async {
-    final user = _read(authRepositoryProvider).getCurrentUser();
-    if (user == null) {
-      await _read(authRepositoryProvider)
-          .createUserWithEmailAndPassword(email: email, password: password);
-    }
+  Future<UserCredential?> googleSignIn() async {
+    await _read(authRepositoryProvider).googleSignIn();
   }
-
-  // void singIn()
 
   void signOut() async {
     await _read(authRepositoryProvider).signOut();
