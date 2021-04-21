@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 	<key>CLIENT_ID</key>
 	<string>902749077803-20u9na355eai6faccfglsjjdcel87lm7.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
@@ -19,15 +21,15 @@
 	<key>STORAGE_BUCKET</key>
 	<string>auto-entrepreneur-ff09c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:902749077803:ios:017fdbea32162d5521c56e</string>
 </dict>
