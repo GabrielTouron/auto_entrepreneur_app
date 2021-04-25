@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class BottonNavigationBar extends StatelessWidget {
+class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
+          icon: Icon(Icons.dashboard),
+          label: 'Tableau de bord',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.euro),
-          label: 'Incomes',
+          label: 'Revenus',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person_pin_outlined),
